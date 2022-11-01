@@ -1,0 +1,9 @@
+// {{titleCase name}} Routes
+import {{camelCase name}}Controller from './controllers/{{titleCase name}}Controller';
+router.post("/api/{{camelCase name}}", {{camelCase name}}Controller.createOne);
+router.get("/api/{{camelCase name}}/:id", {{camelCase name}}Controller.getOneById);
+router.get("/api/{{camelCase name}}s", {{camelCase name}}Controller.getMany);
+router.patch("/api/{{camelCase name}}/:id", {{camelCase name}}Controller.updateOneById);
+router.delete("/api/{{camelCase name}}/:id", {{camelCase name}}Controller.deleteOneById);
+
+//routes

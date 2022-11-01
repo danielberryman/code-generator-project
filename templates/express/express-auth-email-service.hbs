@@ -1,0 +1,12 @@
+const EmailService = {
+  handleResetEmail: (token: string, id: string) => {
+    // TODO: IMPLEMENT SENDGRID
+
+    const link =
+      "http://localhost:3000/password-reset?token=" + token + "&id=" + id;
+
+    console.log(link);
+  },
+};
+
+export default EmailService;

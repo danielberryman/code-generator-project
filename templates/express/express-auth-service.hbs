@@ -1,0 +1,45 @@
+import jwt, { JwtPayload } from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+import { TokenPayload } from "../interfaces/TokenPayload";
+import { User } from ".prisma/client";
+import userRepository, { NewUserDto } from "../repositories/UserRepository";
+
+function verifyToken(token: string): JwtPayload | string {
+  return jwt.verify(token, process.env.TOKEN_SECRET);
+}
+
+async function register(email: string, password: string): Promise<User | null> {
+  const hashedPassword = await hashData(password);
+  const newUserDto: NewUserDto = {
+    email,
+    password: hashedPassword,
+  };
+
+  return await userRepository.create(newUserDto);
+}
+
+async function compareStringToHashedString(str1: string, str2: string) {
+  return await bcrypt.compare(str1, str2);
+}
+
+function generateToken(payload: TokenPayload, exp: string) {
+  return jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: exp });
+}
+
+function processPasswordResetRequest(payload: TokenPayload, exp: string) {
+  return jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: exp });
+}
+
+async function hashData(data: string) {
+  const salt = await bcrypt.genSalt(process.env.SALT_ROUNDS);
+  return await bcrypt.hash(data, salt);
+}
+
+export default {
+  verifyToken,
+  register,
+  testStringsForMatch,
+  generateToken,
+  processPasswordResetRequest,
+  hashData,
+};

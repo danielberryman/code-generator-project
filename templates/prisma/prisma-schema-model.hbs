@@ -1,0 +1,22 @@
+model {{titleCase name}} {
+  // @unique, @default(place value here)
+
+  id            String    @id @default(cuid())
+  // string       String?
+  // some_int     Int?
+  // date         DateTime
+
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+
+  // Single Relation
+  // someRelation SomeRelation @relation(fields: [someRelationId], references: [id], onDelete: Cascade)
+
+  // Join Table Relation (model title would be something like Relation2sOnRelation1 i.e. ArtistsOnShow)
+  // relation1       Relation1 @relation(fields: [relation1Id], references: [id])
+  // relation1Id     String
+  // relation2       Relation2 @relation(fields: [relation2Id], references: [id])
+  // relation2Id     String
+  // @@id([relation1Id, relation2Id])
+  // Using it in another modal: someName Relation2sOnRelation1[] i.e. artists ArtistsOnShow[]
+}

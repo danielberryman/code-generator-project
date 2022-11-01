@@ -1,0 +1,112 @@
+import { {{titleCase name}} } from ".prisma/client";
+import { Request, Response, NextFunction } from "express";
+import {{titleCase name}}Repository, {
+  {{titleCase name}}Dto,
+  New{{titleCase name}}Dto,
+} from "../repositories/{{titleCase name}}Repository";
+// import {{titleCase name}}Service from "../services/{{titleCase name}}Service";
+
+async function createOne(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { title, published } = req.body;
+
+    if (!title) throw Error("Title is required.");
+
+    const new{{titleCase name}}Dto: New{{titleCase name}}Dto = {
+      title,
+      published,
+    };
+
+    const new{{titleCase name}}: {{titleCase name}} | null = await {{titleCase name}}Repository.createOne(new{{titleCase name}}Dto);
+    // const new{{titleCase name}} = await {{titleCase name}}Service.createOne(new{{titleCase name}}Dto);
+
+    res.send(new{{titleCase name}});
+  } catch (error) {
+    next(error);
+  }
+}
+
+// TODO: createMany
+
+async function getOneById(req: Request, res: Response, next: NextFunction) {
+  try {
+    const id: string = req.params.id;
+
+    if (!id) throw Error("Id required.");
+
+    const {{camelCase name}}: {{titleCase name}} | null = await {{titleCase name}}Repository.getOneById(id);
+    // const {{camelCase name}}s = await {{titleCase name}}Service.getOneById(id);
+
+    res.send({{camelCase name}});
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function getMany(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { ids } = req.body;
+
+    const {{camelCase name}}s = await {{titleCase name}}Repository.getManyByIds(ids);
+    // const {{camelCase name}}s = await {{titleCase name}}Service.getManyByIds(ids);
+
+    res.send({{camelCase name}}s);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function updateOneById(req: Request, res: Response, next: NextFunction) {
+  try {
+    const id: string = req.params.id;
+
+    if (!id) throw Error("Id required.");
+
+    const { title, published } = req.body;
+
+    if (typeof title === "string" && !title) {
+      throw Error("Title cannot be empty.");
+    }
+
+    const {{camelCase name}}Dto: {{titleCase name}}Dto = {};
+    if (title) {{camelCase name}}Dto.title = title;
+    if (published) {{camelCase name}}Dto.published = published === "true";
+    
+    const {{camelCase name}} = await {{titleCase name}}Repository.updateOneById(id, {{camelCase name}}Dto);
+    // const {{camelCase name}} = await {{titleCase name}}Service.updateOne({{camelCase name}}Dto);
+
+    res.send({{camelCase name}});
+  } catch (error) {
+    next(error);
+  }
+}
+
+// TODO: updateMany
+
+async function deleteOneById(req: Request, res: Response, next: NextFunction) {
+  try {
+    const id: string = req.params.id;
+
+    if (!id) throw Error("Id required.");
+
+    const {{camelCase name}} = await {{titleCase name}}Repository.deleteOneById(id);
+    // const {{camelCase name}} = await {{titleCase name}}Service.deleteById(id);
+
+    res.send({{camelCase name}});
+  } catch (error) {
+    next(error);
+  }
+}
+
+// TODO: deleteMany
+
+export default {
+  createOne,
+  // createMany,
+  getOneById,
+  getMany,
+  updateOneById,
+  // updateMany,
+  deleteOneById,
+  // deleteMany,
+};

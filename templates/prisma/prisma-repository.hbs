@@ -1,0 +1,72 @@
+import { {{titleCase name}} } from ".prisma/client";
+import { prisma } from "..";
+
+export type {{titleCase name}}Dto = {
+  title?: string;
+  published?: boolean;
+};
+
+export type New{{titleCase name}}Dto = {
+  title: string;
+  published?: boolean;
+};
+
+async function createOne({{camelCase name}}: New{{titleCase name}}Dto): Promise<{{titleCase name}} | null> {
+  return await prisma.{{camelCase name}}.create({ data: {{camelCase name}} });
+}
+
+// TODO: createMany
+
+async function getOneById(id: string): Promise<{{titleCase name}} | null> {
+  return await prisma.{{camelCase name}}.findUnique({
+    where: {
+      id,
+    },
+  });
+}
+
+async function getManyByIds(ids: string[]) {
+  return await prisma.{{camelCase name}}.findMany({
+    where: {
+      OR: ids.map((id) => {
+        return {
+          id: {
+            equals: id,
+          },
+        };
+      }),
+    },
+  });
+}
+
+async function updateOneById(id: string, {{camelCase name}}: {{titleCase name}}Dto) {
+  return await prisma.{{camelCase name}}.update({
+    where: {
+      id,
+    },
+    data: {{camelCase name}},
+  });
+}
+
+// TODO: updateMany
+
+async function deleteOneById(id: string) {
+  return await prisma.{{camelCase name}}.delete({
+    where: {
+      id,
+    },
+  });
+}
+
+// TODO: deleteMany
+
+export default {
+  createOne,
+  // createMany,
+  getOneById,
+  getManyByIds,
+  updateOneById,
+  // updateMany,
+  deleteOneById,
+  // deleteMany
+};

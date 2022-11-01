@@ -1,0 +1,177 @@
+import { Request, Response, NextFunction } from "express";
+import { JwtPayload } from "jsonwebtoken";
+import authService from "../services/AuthService";
+import userRepository from "../repositories/UserRepository";
+import { User } from ".prisma/client";
+import { TokenPayload } from "../interfaces/TokenPayload";
+import { TOKEN_EXP_1H, TOKEN_EXP_5M, TOKEN_STR } from "../constants";
+import emailService from "../services/EmailService";
+
+let cookieConfig: any;
+
+switch (process.env.ENV) {
+  case "local":
+    cookieConfig = {};
+    break;
+  default:
+    cookieConfig = { httpOnly: true };
+}
+
+function validateToken(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { token } = req.cookies;
+    if (!token) {
+      next();
+    } else {
+      const decodedToken: string | JwtPayload = authService.verifyToken(token);
+      res.locals.decodedToken = decodedToken;
+      next();
+    }
+  } catch (error) {
+    res.clearCookie("token").status(401);
+    next(error);
+  }
+}
+
+async function register(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      res.status(400).send("Email and/or password must be included.");
+    }
+
+    const user = await userRepository.getByEmail(email);
+    if (user) {
+      res.status(409).send("Email already registered.");
+    }
+
+    const newUser: User | null = await authService.register(email, password);
+    if (!newUser) {
+      res.status(500).send("Registration was unsuccessful.");
+    } else {
+      res.status(200).send("Registration was successful.");
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function login(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { email, password } = req.body;
+
+    if (!email) {
+      return res.send("Email must be included when registrating.");
+    }
+
+    const user: User | null = await userRepository.getByEmail(email);
+    console.log(user);
+
+    if (!user) {
+      return res.send("Email not registered.");
+    }
+
+    const passwordsMatch: boolean = await authService.compareStringToHashedString(
+      password,
+      user.password
+    );
+
+    if (!passwordsMatch) {
+      return res.send("Password incorrect.");
+    } else {
+      const payload: TokenPayload = { id: user.id, email: user.email };
+      const token: string = authService.generateToken(payload, TOKEN_EXP_1H);
+      res.cookie(TOKEN_STR, token, cookieConfig);
+      return res.send(user);
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function logout(req: Request, res: Response) {
+  res.clearCookie(TOKEN_STR);
+  res.send("Logout successful.");
+}
+
+async function passwordResetRequest(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.send("Email must be included when registrating.");
+    }
+
+    let user: User | null = await userRepository.getByEmail(email);
+    if (!user) {
+      return res.send("Email not registered.");
+    }
+
+    const payload: TokenPayload = { id: user.id, email: user.email };
+    const token: string = authService.generateToken(payload, TOKEN_EXP_5M);
+    const hashedToken: string = await authService.hashData(token);
+
+    user = await userRepository.updateById(user.id, {
+      resetToken: hashedToken,
+    });
+
+    if (!user.resetToken) {
+      res.send("Password reset email failed to send.");
+    } else {
+      emailService.handleResetEmail(token, user.id);
+      res.send("Password reset email has been sent successfully!");
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function passwordReset(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { id, token, password } = req.body;
+    console.log("pw reset body:", req.body);
+    
+
+    if (!token || !id || !password) {
+      res.send("Password reset was unsuccessful.");
+    }
+
+    let user = await userRepository.getById(id);
+    if (!user) {
+      res.send("User not found.");
+    } else if (
+      !user.resetToken ||
+      !(await authService.compareStringToHashedString(token, user.resetToken))
+    ) {
+      res.send("Password reset was unsuccessful. Reset Token Invalid.");
+    } else {
+      const hashedPassword = await authService.hashData(password);
+
+      user = await userRepository.updateById(user.id, {
+        password: hashedPassword,
+        resetToken: null,
+      });
+
+      if (!user) {
+        res.send("Password reset was unsuccessful.");
+      }
+
+      res.send("Your password was updated successfully!");
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
+export default {
+  validateToken,
+  register,
+  login,
+  logout,
+  passwordResetRequest,
+  passwordReset,
+};
