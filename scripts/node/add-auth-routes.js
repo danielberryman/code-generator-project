@@ -1,5 +1,5 @@
 const fs = require('fs');
-import { authRoutes } from "../constants/express";
+const { authRoutes } = require("../../constants/express.js");
 
 try {
   const buffer = fs.readFileSync('./routes.ts');

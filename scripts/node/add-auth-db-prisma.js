@@ -1,5 +1,5 @@
 const fs = require('fs');
-import { authDbPrismaContent } from '../../constants/prisma';
+const { authDbPrismaContent } = require("../../constants/prisma.js");
 
 try {
   const buffer = fs.readFileSync('./prisma/schema.prisma');

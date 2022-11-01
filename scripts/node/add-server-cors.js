@@ -1,5 +1,5 @@
 const fs = require('fs');
-import { serverCors } from "../../constants/express";
+const { serverCors } = require("../../constants/express.js");
 
 try {
   const buffer = fs.readFileSync('./index.ts');

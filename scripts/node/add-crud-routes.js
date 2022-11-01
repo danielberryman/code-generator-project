@@ -1,5 +1,5 @@
 const fs = require('fs');
-import { crudRoutesRef } from "../constants/express";
+const { crudRoutesRef } = require("../../constants/express.js");
 
 try {
   const routesBuffer = fs.readFileSync('../plop/output/express/routes.ts');

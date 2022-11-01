@@ -1,5 +1,5 @@
 const fs = require('fs');
-import { authSecretContent } from "../constants/express";
+const { authSecretContent } = require("../../constants/express.js");
 
 try {
   const buffer = fs.readFileSync('./.env');

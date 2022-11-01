@@ -1,5 +1,5 @@
 const fs = require('fs');
-import { serverRouting } from "../../constants/express";
+const { serverRouting } = require("../../constants/express.js");
 
 try {
   const buffer = fs.readFileSync('./index.ts');

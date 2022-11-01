@@ -1,5 +1,5 @@
 const fs = require('fs');
-import { serverAuth } from "../../constants/express";
+const { serverAuth } = require("../../constants/express.js");
 
 try {
   const buffer = fs.readFileSync('./index.ts');

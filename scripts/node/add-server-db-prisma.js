@@ -1,5 +1,5 @@
 const fs = require('fs');
-import { serverDbPrisma } from "../../constants/express";
+const { serverDbPrisma } = require("../../constants/express.js");
 
 try {
   const buffer = fs.readFileSync('./index.ts');
