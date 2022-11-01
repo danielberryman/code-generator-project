@@ -13,4 +13,4 @@ echo "Run: npx prisma generate"
 npx prisma generate
 
 echo "Run: add-server-db-prisma"
-node ../add-server-db-prisma.js
+node ~/Code/db-plop/scripts/node/add-server-db-prisma.js

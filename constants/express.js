@@ -9,10 +9,11 @@ const npmScriptsContent = {
 };
 const authConstantsContent =
     "\n// auth\n" +
-    "const TOKEN_STR = \"token\";\n" +
-    "const TOKEN_EXP_1H = \"1hr\";\n" +
-    "const TOKEN_EXP_5M = \"5m\";\n";
-const authEnvironmentContent = "declare global {\n" +
+    "export const TOKEN_STR = \"token\";\n" +
+    "export const TOKEN_EXP_1H = \"1hr\";\n" +
+    "export const TOKEN_EXP_5M = \"5m\";\n";
+const authEnvironmentContent =
+    "declare global {\n" +
     "  namespace NodeJS {\n" +
     "    interface ProcessEnv {\n" +
     "      NODE_ENV: 'development' | 'production';\n" +
@@ -68,7 +69,7 @@ const serverDbPrisma = {
     content:
         "// Database\n" +
         "import { PrismaClient } from '@prisma/client';\n" +
-        "const prisma = new PrismaClient();"
+        "export const prisma = new PrismaClient();"
 }
 
 const serverRouting = {

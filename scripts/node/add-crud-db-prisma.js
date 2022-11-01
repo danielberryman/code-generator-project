@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 try {
-  const modelBuffer = fs.readFileSync('../plop/output/prisma/model.ts');
+  const modelBuffer = fs.readFileSync(`${process.env.HOME}/Code/db-plop/output/express/model.ts`);
   const modelText = modelBuffer.toString();
 
   const mainBuffer = fs.readFileSync('./prisma/schema.prisma');

@@ -5,13 +5,13 @@ module.exports = plop => {
     actions: [
       {
         type: 'add',
-        path: '../output/express/index.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/index.ts`,
         templateFile:
           `${process.env.HOME}/Code/db-plop/templates/express/express-server.hbs`,
       },
       {
         type: 'add',
-        path: '../output/express/routes.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/routes.ts`,
         templateFile:
           `${process.env.HOME}/Code/db-plop/templates/express/express-routes.hbs`,
       }

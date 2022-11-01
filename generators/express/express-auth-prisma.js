@@ -5,33 +5,33 @@ module.exports = plop => {
     actions: [
       {
         type: 'add',
-        path: '../output/AuthController.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/AuthController.ts`,
         templateFile:
-          '../templates/express/express-auth-controller.hbs',
+          `${process.env.HOME}/Code/db-plop/templates/express/express-auth-controller.hbs`,
       },
       {
         type: 'add',
-        path: '../output/AuthService.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/AuthService.ts`,
         templateFile:
-          '../templates/express/express-auth-service.hbs',
+          `${process.env.HOME}/Code/db-plop/templates/express/express-auth-service.hbs`,
       },
       {
         type: 'add',
-        path: '../output/EmailService.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/EmailService.ts`,
         templateFile:
-          '../templates/express/express-auth-email-service.hbs',
+          `${process.env.HOME}/Code/db-plop/templates/express/express-auth-email-service.hbs`,
       },
       {
         type: 'add',
-        path: '../output/UserRepository.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/UserRepository.ts`,
         templateFile:
-          '../templates/express/express-auth-prisma-repository.hbs',
+          `${process.env.HOME}/Code/db-plop/templates/express/express-auth-prisma-repository.hbs`,
       },
       {
         type: 'add',
-        path: '../output/TokenPayload.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/TokenPayload.ts`,
         templateFile:
-          '../templates/express/express-auth-token-payload-interface.hbs',
+          `${process.env.HOME}/Code/db-plop/templates/express/express-auth-token-payload-interface.hbs`,
       },
     ],
   });

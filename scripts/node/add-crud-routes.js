@@ -2,7 +2,7 @@ const fs = require('fs');
 const { crudRoutesRef } = require("../../constants/express.js");
 
 try {
-  const routesBuffer = fs.readFileSync('../plop/output/express/routes.ts');
+  const routesBuffer = fs.readFileSync(`${process.env.HOME}/Code/db-plop/output/express/routes.ts`);
   const routesText = routesBuffer.toString();
 
   const mainBuffer = fs.readFileSync('./routes.ts');

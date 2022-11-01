@@ -11,49 +11,49 @@ module.exports = plop => {
     actions: [
       {
         type: 'add',
-        path: '../output/{{titleCase name}}Controller.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/{{titleCase name}}Controller.ts`,
         templateFile:
-          '../templates/express/express-controller.hbs',
+          `${process.env.HOME}/Code/db-plop/templates/express/express-controller.hbs`,
       },
       {
         type: 'append',
-        path: '../output/{{dashCase name}}Controller.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/{{dashCase name}}Controller.ts`,
         pattern: `/* PLOP_INJECT_EXPORT */`,
         template: `\t{{pascalCase name}},`,
       },
       {
         type: 'add',
-        path: '../output/{{titleCase name}}Repository.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/{{titleCase name}}Repository.ts`,
         templateFile:
-          '../templates/prisma/prisma-repository.hbs',
+          `${process.env.HOME}/Code/db-plop/templates/prisma/prisma-repository.hbs`,
       },
       {
         type: 'append',
-        path: '../output/{{dashCase name}}Repository.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/{{dashCase name}}Repository.ts`,
         pattern: `/* PLOP_INJECT_EXPORT */`,
         template: `\t{{pascalCase name}},`,
       },
       {
         type: 'add',
-        path: '../output/routes.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/routes.ts`,
         templateFile:
-          '../templates/express/express-routes-crud.hbs',
+          `${process.env.HOME}/Code/db-plop/templates/express/express-routes-crud.hbs`,
       },
       {
         type: 'append',
-        path: '../output/routes.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/routes.ts`,
         pattern: `/* PLOP_INJECT_EXPORT */`,
         template: `\t{{pascalCase name}},`,
       },
       {
         type: 'add',
-        path: '../output/model.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/model.ts`,
         templateFile:
-          '../templates/prisma/prisma-schema-model.hbs',
+          `${process.env.HOME}/Code/db-plop/templates/prisma/prisma-schema-model.hbs`,
       },
       {
         type: 'append',
-        path: '../output/model.ts',
+        path: `${process.env.HOME}/Code/db-plop/output/express/model.ts`,
         pattern: `/* PLOP_INJECT_EXPORT */`,
         template: `\t{{pascalCase name}},`,
       },
