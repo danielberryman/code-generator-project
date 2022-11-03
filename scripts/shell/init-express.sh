@@ -12,7 +12,7 @@ echo "Run: plop --plopfile ~/Code/db-plop/generators/express/express-server.js"
 plop --plopfile ~/Code/db-plop/generators/express/express-server.js
 
 echo "Run: mv files to $1"
-mv ~/Code/db-plop/output/express/* ~/Code/$1
+mv ~/Code/db-plop/output/express/* ~/Code/db-javascript/db-node/$1
 
 echo "Run: cd $1"
 cd $1

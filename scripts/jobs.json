@@ -1,0 +1,29 @@
+[
+    {
+        "name": "react-router",
+        "instructions": [
+            {
+                "key": "\/\/ routing",
+                "content": [
+                    "// Routing\n",
+                    "import routes from './routes';\n",
+                    "app.use(routes);"
+                ],
+                "files": [
+                    "./index.ts"
+                ]
+            },
+            {
+                "key": "\/\/ routing",
+                "content": [
+                    "// Routing\n",
+                    "import routes from './routes';\n",
+                    "app.use(routes);"
+                ],
+                "files": [
+                    "./index.ts"
+                ]
+            }
+        ]
+    }
+]

@@ -35,7 +35,7 @@ node ~/Code/db-plop/scripts/node/add-auth-constants.js
 
 # Generate files
 echo "Run: plop --plopfile ./generators/express/express-auth-prisma.js"
-plop --plopfile ../db-plop/generators/express/express-auth-prisma.js
+plop --plopfile ~/Code/db-plop/generators/express/express-auth-prisma.js
 
 # Move files
 echo "Run: move generated files into place"
