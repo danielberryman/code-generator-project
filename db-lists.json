@@ -1,0 +1,6 @@
+{
+  "technologies": ["react", "node"],
+  "jobs": {
+    "react": ["setup", "routing", "navigation"]
+  }
+}

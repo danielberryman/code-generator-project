@@ -16,5 +16,3 @@ echo "Run: mv files to $1"
 mv ~/Code/db-plop/output/react/* ~/Code/db-javascript/db-react/$1/src
 
 cd ~/Code/db-javascript/db-react/$1
-
-code .

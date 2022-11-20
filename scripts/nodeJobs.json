@@ -1,0 +1,91 @@
+[
+    {
+        "name": "react-router",
+        "instructions": [
+            {
+                "key": "\/\/ routing",
+                "content": [
+                    "// Routing\n",
+                    "import routes from './routes';\n",
+                    "app.use(routes);"
+                ],
+                "files": [
+                    "./index.ts"
+                ]
+            },
+            {
+                "key": "\/\/ routing1",
+                "content": [
+                    "import {\n",
+                    "   createBrowserRouter,\n",
+                    "   RouterProvider,\n",
+                    "} from 'react-router-dom';\n",
+                    "\n",
+                    "const router = createBrowserRouter([\n",
+                    "   {\n",
+                    "       path: '/',\n",
+                    "       element: <App />,\n",
+                    "       // children: [\n",
+                    "       //   {\n",
+                    "       //     path: 'fake',\n",
+                    "       //     element: <Fake />,\n",
+                    "       //   }\n",
+                    "       // ]\n",
+                    "   }\n",
+                    "]);"
+                ],
+                "files": [
+                    "./index.ts"
+                ]
+            }
+            ref1: \/\/ routing1,
+    content1: "import {\n",
+            "   createBrowserRouter,\n",
+            "   RouterProvider,\n",
+            "} from 'react-router-dom';\n",
+            "\n",
+            "const router = createBrowserRouter([\n",
+            "   {\n",
+            "     path: '/',\n",
+            "     element: <App />,\n",
+            "     // children: [\n",
+            "     //   {\n",
+            "     //     path: 'fake',\n",
+            "     //     element: <Fake />,\n",
+            "     //   }\n",
+            "     // ]\n",
+            "   }\n",
+            " ]);",
+    ref2: /\{\/\* routing2 \*\/\
+            }/,
+    content2: "<RouterProvider router={router} />",
+        ]
+    },
+    {
+        "name": "react-custom-auth",
+        "instructions": [
+            {
+                "key": "\/\/ routing",
+                "content": [
+                    "// Routing\n",
+                    "import routes from './routes';\n",
+                    "app.use(routes);"
+                ],
+                "files": [
+                    "./index.ts"
+                ]
+            },
+            {
+                "key": "\/\/ routing",
+                "content": [
+                    "// Routing\n",
+                    "import routes from './routes';\n",
+                    "app.use(routes);"
+                ],
+                "files": [
+                    "./index.ts"
+                ]
+            }
+        ]
+    }
+]

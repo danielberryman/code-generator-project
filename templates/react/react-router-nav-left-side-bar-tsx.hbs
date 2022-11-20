@@ -1,0 +1,88 @@
+import { Link } from "react-router-dom"; import styles from "./Nav.module.css";
+// nextImport const BASE_URL = "http://localhost:4000/api"; const LOGOUT_ACTION
+= "logout"; function Nav() { // nextVar function handleLogout() { auth.logout();
+const url = `${BASE_URL}/${LOGOUT_ACTION}`; fetch(url, { method: "POST",
+credentials: "include", }) .then((res) => { return res.json(); })
+.then((jsonRes) => { auth.login(jsonRes); }) .catch((error) => {
+console.error("Error:", error); }); } return (
+<nav className="{styles.container}">
+  <header className="{styles.header}">
+    <img className="{styles.logo}" src="vite.svg" />
+    <div className="{styles.titles}">
+      <h1 className="{styles.title}">TBV</h1>
+      <p className="{styles.sub_title}">Do What You Value</p>
+    </div>
+  </header>
+  <div className="{styles.body}">
+    {auth && auth.userIsLoggedIn && (
+    <ul className="{styles.list}">
+      <li className="{styles.list_item}">
+        <Link className="{styles.link}" to="/">
+          <i className="bi bi-1-circle"></i>
+          <span>Sessions</span>
+        </Link>
+      </li>
+      <li className="{styles.list_item}">
+        <Link className="{styles.link}" to="/">
+          <i className="bi bi-1-circle"></i>
+          <span>Tasks</span>
+        </Link>
+      </li>
+      <li className="{styles.list_item}">
+        <Link className="{styles.link}" to="/">
+          <i className="bi bi-1-circle"></i>
+          <span>Areas</span>
+        </Link>
+      </li>
+      <li className="{styles.list_item}">
+        <Link className="{styles.link}" to="/projects">
+          <i className="bi bi-1-circle"></i>
+          <span>Projects</span>
+        </Link>
+      </li>
+      <li className="{styles.list_item}">
+        <Link className="{styles.link}" to="/">
+          <i className="bi bi-1-circle"></i>
+          <span>Reports</span>
+        </Link>
+      </li>
+    </ul>
+    )}
+  </div>
+  <footer className="{styles.footer}">
+    {auth && auth.userIsLoggedIn ? (
+    <ul className="{styles.list}">
+      <li className="{styles.sub_list_item}">
+        <Link className="{styles.sub_link}" to="/account-settings">
+          <i className="bi bi-1-circle"></i>
+          <span>Settings</span>
+        </Link>
+      </li>
+      {/* nextAuthLink */}
+      <li className="{styles.sub_list_item}">
+        <Link className="{styles.sub_link}" onClick="{handleLogout}">
+          <i className="bi bi-1-circle"></i>
+          <span>Logout</span>
+        </Link>
+      </li>
+    </ul>
+    ) : (
+    <ul className="{styles.list}">
+      <li className="{styles.sub_list_item}">
+        <Link className="{styles.sub_link}" to="/register">
+          <i className="bi bi-1-circle"></i>
+          <span>Register</span>
+        </Link>
+      </li>
+      <li className="{styles.sub_list_item}">
+        <Link className="{styles.sub_link}" to="/login">
+          <i className="bi bi-1-circle"></i>
+          <span>Login</span>
+        </Link>
+      </li>
+      {/* nextLink */}
+    </ul>
+    )}
+  </footer>
+</nav>
+); } export default Nav;

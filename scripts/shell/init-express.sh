@@ -31,11 +31,12 @@ node ~/Code/db-plop/scripts/node/add-tsc-outdir.js
 echo "Run: add-npm-scripts.js"
 node ~/Code/db-plop/scripts/node/add-npm-scripts.js
 
+echo "Run: add-server-cors.js"
+node ~/Code/db-plop/scripts/node/add-server-cors.js
+
 echo "Run: creating directories..."
 mkdir controllers
 mkdir repositories
 mkdir services
 mkdir interfaces
 touch constants.ts
-
-code .

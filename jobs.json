@@ -1,0 +1,47 @@
+[
+  {
+    "name": "react",
+    "next": [
+      {
+        "name": "vite1",
+        "file": "./jobs/react/vite/1/setup.js",
+        "next": [
+          {
+            "name": "react-router",
+            "file": "./jobs/react/vite/1/routing/react-router/router.js",
+            "next": [
+              {
+                "name": "top",
+                "file": "./jobs/react/vite/1/routing/react-router/nav-top/nav.js",
+                "next": [
+                  {
+                    "name": "custom",
+                    "file": "./jobs/react/vite/1/routing/react-router/nav-top/auth/custom.js"
+                  },
+                  {
+                    "name": "passport",
+                    "file": "./jobs/react/vite/1/routing/react-router/nav-top/auth/passport.js"
+                  }
+                ]
+              },
+              {
+                "name": "left",
+                "file": "./jobs/react/vite/1/routing/react-router/nav-left/nav.js",
+                "next": [
+                  {
+                    "name": "custom",
+                    "file": "./jobs/react/vite/1/routing/react-router/nav-left/auth/custom.js"
+                  },
+                  {
+                    "name": "passport",
+                    "file": "./jobs/react/vite/1/routing/react-router/nav-left/auth/passport.js"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
