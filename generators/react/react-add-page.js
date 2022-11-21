@@ -1,4 +1,4 @@
-module.exports = (plop) => {
+export default (plop) => {
   plop.setGenerator("react-router-nav-comp", {
     description: "Create nav files for react-router setup",
     prompts: [

@@ -2,7 +2,7 @@ import runInstructions from "./instructions.mjs";
 import instructions from "./instructions/react/setup/vite.mjs";
 import { routerCallback, routerPrompt } from "./reactRouter.mjs";
 
-export const setupPrompt = [
+export const addPageNavLinkPrompt = [
   {
     name: "setup",
     message:
@@ -17,7 +17,7 @@ export const setupPrompt = [
   },
 ];
 
-export async function setupCallback(input, config) {
+export async function addPageNavLinkCallback(input, config) {
   switch (input.setup) {
     case "vite":
       await runInstructions(instructions, { appName: input.appName });

@@ -5,8 +5,7 @@ import { navPrompt, navCallback } from "./reactNav.mjs";
 export const routerPrompt = [
   {
     name: "router",
-    message:
-      "What router do you want to use?",
+    message: "What router do you want to use?",
     type: "list",
     choices: ["react-router"],
   },
@@ -19,10 +18,10 @@ export async function routerCallback(input, config) {
       const next = {
         prompt: navPrompt,
         callback: navCallback,
-        config
+        config,
       };
       return next;
-      // break;
+    // break;
     default:
       throw new Error("Framework is required.");
   }

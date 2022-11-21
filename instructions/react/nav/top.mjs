@@ -4,8 +4,7 @@ dotenv.config();
 const instructions = [
   {
     type: "e",
-    command:
-      `mkdir ${process.env.BASE_URL}/$appName/client/src/components/Nav`,
+    command: `mkdir ${process.env.BASE_URL}/$appName/client/src/components/Nav`,
   },
   {
     type: "e",
@@ -13,8 +12,7 @@ const instructions = [
   },
   {
     type: "e",
-    command:
-      `mv ~/Code/db-plop/output/react/* ${process.env.BASE_URL}/$appName/client/src/components/Nav`,
+    command: `mv ~/Code/db-plop/output/react/* ${process.env.BASE_URL}/$appName/client/src/components/Nav`,
   },
   {
     name: "add child route to router",
@@ -29,7 +27,7 @@ const instructions = [
     key: "{/* nav */}",
     content: "<Nav />",
     files: [`${process.env.BASE_URL}/$appName/client/src/App.tsx`],
-  }
+  },
 ];
 
 export default { instructions, requirements: ["appName"] };

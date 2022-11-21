@@ -5,8 +5,7 @@ import topInstructions from "./instructions/react/nav/top.mjs";
 export const navPrompt = [
   {
     name: "nav",
-    message:
-      "What nav do you want to use?",
+    message: "What nav do you want to use?",
     type: "list",
     choices: ["top", "left"],
   },

@@ -16,7 +16,7 @@ function initCallback(input, config) {
       const next = {
         prompt: setupPrompt,
         callback: setupCallback,
-        config
+        config,
       };
       return next;
     case "node":
