@@ -38,10 +38,10 @@ const instructions = [
     type: "e",
     command: `code ${process.env.BASE_URL}/$appName`,
   },
-  {
-    type: "e",
-    command: `cd ${process.env.BASE_URL}/$appName && npx prettier --write .`,
-  },
+  // {
+  //   type: "e",
+  //   command: `cd ${process.env.BASE_URL}/$appName && npx prettier --write .`,
+  // },
 ];
 
 export default { instructions, requirements: ["appName"] };

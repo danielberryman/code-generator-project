@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { setupCallback, setupPrompt } from "./reactPrompts.mjs";
+import { setupCallback, setupPrompt } from "./reactSetup.mjs";
 
 const initPrompt = [
   {
@@ -10,12 +10,13 @@ const initPrompt = [
   },
 ];
 
-function initCallback(input) {
+function initCallback(input, config) {
   switch (input.technology) {
     case "react":
       const next = {
         prompt: setupPrompt,
         callback: setupCallback,
+        config
       };
       return next;
     case "node":
@@ -25,13 +26,13 @@ function initCallback(input) {
   }
 }
 
-function run(prompt, callback) {
-  inquirer.prompt(prompt).then((input) => {
-    const next = callback(input);
-    if (next && next.prompt && next.callback) {
-      run(next.prompt, next.callback);
+function run(prompt, callback, config) {
+  inquirer.prompt(prompt).then(async (input) => {
+    const next = await callback(input, config);
+    if (next && next.prompt && next.callback && next.config) {
+      run(next.prompt, next.callback, next.config);
     }
   });
 }
 
-run(initPrompt, initCallback);
+run(initPrompt, initCallback, {});

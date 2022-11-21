@@ -7,22 +7,22 @@ export default (plop) => {
       {
         type: "add",
         path: `${process.env.HOME}/Code/db-plop/output/react/App.tsx`,
-        templateFile: `${process.env.HOME}/Code/db-plop/templates/react/base-apptsx.hbs`,
+        templateFile: `${process.env.HOME}/Code/db-plop/templates/react/setup/app-tsx.hbs`,
       },
       {
         type: "add",
         path: `${process.env.HOME}/Code/db-plop/output/react/main.tsx`,
-        templateFile: `${process.env.HOME}/Code/db-plop/templates/react/base-maintsx.hbs`,
+        templateFile: `${process.env.HOME}/Code/db-plop/templates/react/setup/main-tsx.hbs`,
       },
       {
         type: "add",
         path: `${process.env.HOME}/Code/db-plop/output/react/index.css`,
-        templateFile: `${process.env.HOME}/Code/db-plop/templates/react/base-indexcss.hbs`,
+        templateFile: `${process.env.HOME}/Code/db-plop/templates/react/setup/index-css.hbs`,
       },
       {
         type: "add",
         path: `${process.env.HOME}/Code/db-plop/output/react/App.css`,
-        templateFile: `${process.env.HOME}/Code/db-plop/templates/react/base-appcss.hbs`,
+        templateFile: `${process.env.HOME}/Code/db-plop/templates/react/setup/app-css.hbs`,
       },
     ],
   });

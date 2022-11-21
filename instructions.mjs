@@ -1,12 +1,13 @@
 import { exec } from "child_process";
+import fs from "fs";
 
-export default async function runInstructions(instructions, options) {
-  let appName;
-  let componentName;
+export default async function runInstructions(instructions, config) {
+  let appName = config.appName ? config.appName : "";
+  let componentName = config.componentName ? config.componentName : "";
 
   if (instructions.requirements.length > 0) {
     for (const requirement of instructions.requirements) {
-      if (options[requirement] === null) {
+      if (config[requirement] === null) {
         throw new Error("Missing required CLI parameter: " + requirement);
       }
     }
@@ -32,8 +33,6 @@ export default async function runInstructions(instructions, options) {
           content = content.replace(/\$componentName/g, componentName);
         }
 
-        console.log(__dirname);
-
         const fileBuffer = fs.readFileSync(path);
         const fileText = fileBuffer.toString();
         const editedText = fileText.replace(instruction.key, content);
@@ -43,7 +42,7 @@ export default async function runInstructions(instructions, options) {
       console.log("Instruction type=e");
 
       let command = instruction.command;
-      command = command.replace(/\$appName/, options.appName);
+      command = command.replace(/\$appName/, appName);
 
       if (componentName) {
         console.log("componentName=", componentName);

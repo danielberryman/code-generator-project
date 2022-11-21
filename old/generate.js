@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 const fs = require("fs");
 const path = require("path");
 const { exec } = require("child_process");
-const processArgs = require("./helpers/processArgs");
+const processArgs = require("../helpers/processArgs");
 
 dotenv.config();
 const config = processArgs(process.argv.slice(2));
