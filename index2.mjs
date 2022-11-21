@@ -41,7 +41,7 @@ function initCallback(input, config) {
       };
       return next;
     default:
-      throw new Error("Technology input is reuqired.");
+      throw new Error("Technology input is required.");
   }
 }
 
